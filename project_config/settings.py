@@ -17,7 +17,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.ENV()
+env = environ.Env()
 environ.Env.read_env(BASE_DIR / ".env")
 
 
@@ -59,7 +59,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'Library_management_system.urls'
+ROOT_URLCONF = 'project_config.urls'
 
 TEMPLATES = [
     {
@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Library_management_system.wsgi.application'
+WSGI_APPLICATION = 'project_config.wsgi.application'
 
 
 # Database
