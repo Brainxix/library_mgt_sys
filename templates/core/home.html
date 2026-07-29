@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="{% static 'css/homepage/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/hero.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/search.css' %}">
-    <link rel="stylesheet" href="{% static 'css/omepage/animation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/animation.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/statistics.css' %}">
-    <link rel="stylesheet" href="{% static 'css/hmepage/books.css' %}">
-    <link rel="stylesheet" href="{% static 'css/hmepage/categories.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/books.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/categories.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/featured.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/responsive.css' %}">
@@ -222,53 +222,55 @@
      FEATURED BOOKS
 =========================== -->
 <section class="featured-books">
+
     <div class="section-header">
-      
         <h2>Featured Books</h2>
-        <div class="books-grid">
+        <p>Explore books recommended by our librarians.</p>
+    </div>
 
-            {% for book in featured_books %}
+    <div class="books-grid">
 
-            <div class="book-card">
+        {% for book in featured_books %}
 
-                {% if book.cover_image %}
-                    <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
-                {% else %}
-                    <img src="{% static 'images/default-book.jpg' %}" alt="{{ book.title }}">
-                {% endif %}
+        <div class="book-card">
 
-                <div class="book-card-content">
+            {% if book.cover_image %}
+                <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+            {% else %}
+                <img src="{% static 'images/default-book.jpg' %}" alt="Book">
+            {% endif %}
 
+            <div class="book-card-content">
+
+                {% if book.category %}
                     <span class="book-category">
                         {{ book.category.name }}
                     </span>
+                {% endif %}
 
-                    <h3>{{ book.title }}</h3>
+                <h3>{{ book.title }}</h3>
 
-                    <p>{{ book.author }}</p>
+                <p>{{ book.author }}</p>
 
-                    <div class="book-footer">
+                <div class="book-footer">
+                    <span>{{ book.available_copies }} Available</span>
 
-                        <span>{{ book.available_copies }} Available</span>
-
-                        <a href="#">View</a>
-
-                    </div>
-
+                    <a href="#">View</a>
                 </div>
 
             </div>
 
-            {% empty %}
-
-            <p>No featured books available.</p>
-
-            {% endfor %}
-
         </div>
-    </div>
-</section>
 
+        {% empty %}
+
+        <p>No featured books available.</p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 <!-- ==========================
      CATEGORIES
 =========================== -->
@@ -414,15 +416,15 @@
             {% if book.cover_image %}
                 <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
             {% else %}
-                <img src="{% static 'images/default-book.jpg' %}" alt="{{ book.title }}">
+                <img src="{% static 'images/default-book.jpg' %}" alt="Book">
             {% endif %}
 
-            <div class="book-content">
+            <div class="book-card-content">
 
                 {% if book.category %}
-                    <span class="book-category">
-                        {{ book.category.name }}
-                    </span>
+                <span class="book-category">
+                    {{ book.category.name }}
+                </span>
                 {% endif %}
 
                 <h3>{{ book.title }}</h3>
@@ -432,7 +434,7 @@
                 <div class="book-footer">
 
                     <span class="book-date">
-                        {{ book.created_at|date:"M d, Y" }}
+                        {{ book.publication_year }}
                     </span>
 
                     <a href="#">View</a>
