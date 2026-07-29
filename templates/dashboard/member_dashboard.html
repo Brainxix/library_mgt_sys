@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Member Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-header">
+    <div>
+        <h1>👋 Welcome, {{ request.user.username }}</h1>
+        <p>Explore the library and manage your borrowed books.</p>
+    </div>
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card books">
+        <i class="fa-solid fa-book"></i>
+        <h2>{{ available_books }}</h2>
+        <p>Available Books</p>
+    </div>
+
+</div>
+
+<h2>Quick Actions</h2>
+
+<div class="action-grid">
+
+    <a href="{% url 'book_list' %}" class="action-card">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h4>Browse Books</h4>
+    </a>
+
+    <a href="#" class="action-card">
+        <i class="fa-solid fa-book-bookmark"></i>
+        <h4>My Borrowed Books</h4>
+    </a>
+
+    <a href="{% url 'profile' %}" class="action-card">
+        <i class="fa-solid fa-user"></i>
+        <h4>My Profile</h4>
+    </a>
+
+</div>
+
+{% endblock %}

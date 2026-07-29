@@ -1,0 +1,385 @@
+/* ==========================
+   GOOGLE FONT
+========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+
+    --primary:#2563eb;
+    --primary-hover:#1d4ed8;
+
+    --secondary:#0ea5e9;
+
+    --gold:#fbbf24;
+
+    --success:#22c55e;
+
+    --danger:#ef4444;
+
+    --dark:#0f172a;
+
+    --dark-light:#111827;
+
+    --card:#1e293b;
+
+    --glass:rgba(255,255,255,.08);
+
+    --border:rgba(255,255,255,.12);
+
+    --text:#f8fafc;
+
+    --muted:#cbd5e1;
+
+    --shadow:0 20px 45px rgba(0,0,0,.25);
+
+    --radius:18px;
+
+    --transition:.35s ease;
+
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+        radial-gradient(circle at top left,#2563eb30,transparent 35%),
+        radial-gradient(circle at bottom right,#06b6d430,transparent 35%),
+        linear-gradient(135deg,#0f172a,#111827,#1e293b);
+
+    color:var(--text);
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+
+    scroll-behavior:smooth;
+
+}
+
+/* ==========================
+   SECTION
+========================== */
+section{
+
+    padding:90px 8%;
+
+}
+
+.section-header{
+
+    text-align:center;
+
+    margin-bottom:55px;
+
+}
+
+.section-header h2{
+
+    font-size:2.4rem;
+
+    margin-bottom:15px;
+
+}
+
+.section-header p{
+
+    color:var(--muted);
+
+    max-width:650px;
+
+    margin:auto;
+
+}
+
+
+/* ==========================
+   HEADER
+========================== */
+
+.header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:22px 8%;
+
+    background:rgba(15,23,42,.88);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    color:var(--gold);
+
+    font-size:1.8rem;
+
+    font-weight:700;
+
+
+
+}
+
+.logo i{
+
+
+    font-size:2rem;
+
+    transition:.4s;
+
+}
+
+.logo:hover i{
+
+    transform:rotate(-10deg) scale(1.15);
+
+}
+
+nav{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:35px;
+
+
+
+}
+
+nav a{
+
+    color:white;
+
+    font-weight:500;
+
+    position:relative;
+
+    transition:.3s;
+
+}
+
+nav a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-6px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--gold);
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:var(--gold);
+
+}
+
+nav a:hover::after{
+
+    width:100%;
+
+}
+
+.btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:14px 26px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.btn-primary{
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:white;
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
+
+}
+
+.btn-outline{
+
+    border:2px solid white;
+
+    color:white;
+
+}
+
+.btn-outline:hover{
+
+    background:white;
+
+    color:#111827;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+section{
+
+    animation:fadeUp .8s ease;
+
+}
+
+.menu-toggle{
+
+    display:none;
+
+    font-size:1.8rem;
+
+    cursor:pointer;
+
+    color:white;
+
+}
+
+.mobile-buttons{
+
+    display:none;
+
+}
+
+@media(max-width:992px){
+
+.menu-toggle{
+
+    display:block;
+
+}
+
+.nav-buttons{
+
+    display:none;
+
+}
+
+nav{
+
+    position:absolute;
+
+    top:85px;
+
+    left:0;
+
+    width:100%;
+
+    background:#111827;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:35px 0;
+
+    display:none;
+
+    animation:fadeDown .4s;
+
+
+
+}
+
+nav.active{
+
+    display:flex;
+
+}
+
+.mobile-buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    width:80%;
+
+}
+
+.mobile-buttons .btn{
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+}

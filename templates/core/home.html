@@ -1,0 +1,571 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Brainxix Library Management System</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/homepage/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/hero.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/search.css' %}">
+    <link rel="stylesheet" href="{% static 'css/omepage/animation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/statistics.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hmepage/books.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hmepage/categories.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/featured.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/why-us.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/recent.css' %}">
+    <link rel="stylesheet" href="{% static 'css/homepage/cta.css' %}">
+</head>
+
+<body>
+    
+
+<!-- ==========================
+     HEADER
+=========================== -->
+
+<header class="header">
+
+    <div class="logo">
+        <i class="fa-solid fa-book-open-reader"></i>
+        <span>BLMS</span>
+    </div>
+
+    <!-- Hamburger -->
+
+    <div class="menu-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- Navigation -->
+
+    <nav id="navbar">
+
+        <a href="#">Home</a>
+        <a href="#">Catalog</a>
+        <a href="#">Categories</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+
+        <div class="mobile-buttons">
+
+            <a href="{% url 'login' %}" class="btn btn-outline">
+                Login
+            </a>
+
+            <a href="{% url 'register' %}" class="btn btn-primary">
+                Register
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- Desktop Buttons -->
+
+    <div class="nav-buttons">
+
+        <a href="{% url 'login' %}" class="btn btn-outline">
+            Login
+        </a>
+
+        <a href="{% url 'register' %}" class="btn btn-primary">
+            Register
+        </a>
+
+    </div>
+
+</header>
+
+<!-- ==========================
+     HERO
+=========================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="badge">
+            📚 Welcome to BLMS
+        </span>
+
+        <h1>
+            Knowledge at Your Fingertips
+        </h1>
+
+        <p>
+
+            Explore thousands of books, lecture notes,
+            research papers and digital resources in one place.
+
+        </p>
+
+        <form class="search-box">
+
+            <input
+                type="text"
+                placeholder="Search books, authors, ISBN..."
+            >
+
+            <button type="submit">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </button>
+
+        </form>
+
+        <div class="hero-buttons">
+
+            <a href="#" class="btn btn-primary">
+
+                Browse Books
+
+            </a>
+
+            <a href="{% url 'register' %}" class="btn btn-outline">
+
+                Join BLMS
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-image">
+
+        <i class="fa-solid fa-book-open hero-icon"></i>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+     Library Statictics
+=========================== -->
+
+
+<section class="statistics">
+
+    <div class="section-header">
+
+        <h2>Library Statistics</h2>
+
+        <p>
+            Discover our growing collection and library resources.
+        </p>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <!-- Total Books -->
+        <div class="stat-card">
+
+            <i class="fa-solid fa-book"></i>
+
+            <h3>{{ total_books }}</h3>
+
+            <p>Total Books</p>
+
+        </div>
+
+        <!-- Categories -->
+        <div class="stat-card">
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            <h3>{{ total_categories }}</h3>
+
+            <p>Categories</p>
+
+        </div>
+
+        <!-- Available Books -->
+        <div class="stat-card">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h3>{{ available_books }}</h3>
+
+            <p>Available Books</p>
+
+        </div>
+
+        <!-- Recently Added -->
+        <div class="stat-card">
+
+            <i class="fa-solid fa-clock"></i>
+
+            <h3>{{ recent_books.count }}</h3>
+
+            <p>Recently Added</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+     FEATURED BOOKS
+=========================== -->
+<section class="featured-books">
+    <div class="section-header">
+      
+        <h2>Featured Books</h2>
+        <div class="books-grid">
+
+            {% for book in featured_books %}
+
+            <div class="book-card">
+
+                {% if book.cover_image %}
+                    <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+                {% else %}
+                    <img src="{% static 'images/default-book.jpg' %}" alt="{{ book.title }}">
+                {% endif %}
+
+                <div class="book-card-content">
+
+                    <span class="book-category">
+                        {{ book.category.name }}
+                    </span>
+
+                    <h3>{{ book.title }}</h3>
+
+                    <p>{{ book.author }}</p>
+
+                    <div class="book-footer">
+
+                        <span>{{ book.available_copies }} Available</span>
+
+                        <a href="#">View</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <p>No featured books available.</p>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<!-- ==========================
+     CATEGORIES
+=========================== -->
+
+<section class="categories">
+
+    <div class="section-header">
+
+        <h2>Browse Categories</h2>
+
+        <p>
+            Explore our collection by subject area.
+        </p>
+
+    </div>
+
+    <div class="category-grid">
+
+        {% for category in categories %}
+
+        <div class="category-card">
+
+            {% if category.name == "Computer Science" %}
+                <i class="fa-solid fa-laptop-code"></i>
+
+            {% elif category.name == "Engineering" %}
+                <i class="fa-solid fa-gears"></i>
+
+            {% elif category.name == "Medicine" %}
+                <i class="fa-solid fa-user-doctor"></i>
+
+            {% elif category.name == "Business" %}
+                <i class="fa-solid fa-briefcase"></i>
+
+            {% elif category.name == "Law" %}
+                <i class="fa-solid fa-scale-balanced"></i>
+
+            {% elif category.name == "Education" %}
+                <i class="fa-solid fa-graduation-cap"></i>
+
+            {% else %}
+                <i class="fa-solid fa-book"></i>
+
+            {% endif %}
+
+            <h3>{{ category.name }}</h3>
+
+            <p>{{ category.books.count }} Book{{ category.books.count|pluralize }}</p>
+
+        </div>
+
+        {% empty %}
+
+        <div class="category-card">
+            <i class="fa-solid fa-folder-open"></i>
+            <h3>No Categories</h3>
+            <p>Categories will appear here.</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+<!-- ==========================
+     WHY CHOOSE US
+=========================== -->
+
+<section class="why-us">
+
+    <div class="section-header">
+        <h2>Why Choose Our Library?</h2>
+        <p>
+            We provide a modern, secure, and user-friendly library experience
+            for students, lecturers, researchers, and librarians.
+        </p>
+    </div>
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+            <i class="fa-solid fa-book-open"></i>
+            <h3>Extensive Collection</h3>
+            <p>
+                Thousands of books covering engineering, medicine,
+                business, law, computer science, and more.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-laptop"></i>
+            <h3>Digital Library</h3>
+            <p>
+                Access e-books, lecture notes, journals,
+                and research papers anytime.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h3>Powerful Search</h3>
+            <p>
+                Find books quickly by title, author,
+                ISBN, or category.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <i class="fa-solid fa-clock"></i>
+            <h3>Easy Borrowing</h3>
+            <p>
+                Borrow and return books efficiently with
+                automated tracking.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+     RECENTLY ADDED BOOKS
+=========================== -->
+
+<section class="recent-books">
+
+    <div class="section-header">
+
+        <h2>Recently Added Books</h2>
+
+        <p>
+            Discover the latest books added to our growing collection.
+        </p>
+
+    </div>
+
+    <div class="books-grid">
+
+        {% for book in recent_books %}
+
+        <div class="book-card">
+
+            {% if book.cover_image %}
+                <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+            {% else %}
+                <img src="{% static 'images/default-book.jpg' %}" alt="{{ book.title }}">
+            {% endif %}
+
+            <div class="book-content">
+
+                {% if book.category %}
+                    <span class="book-category">
+                        {{ book.category.name }}
+                    </span>
+                {% endif %}
+
+                <h3>{{ book.title }}</h3>
+
+                <p>{{ book.author }}</p>
+
+                <div class="book-footer">
+
+                    <span class="book-date">
+                        {{ book.created_at|date:"M d, Y" }}
+                    </span>
+
+                    <a href="#">View</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="book-card">
+
+            <div class="book-content">
+
+                <h3>No Books Available</h3>
+
+                <p>Recently added books will appear here.</p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- ==========================
+     CALL TO ACTION
+=========================== -->
+
+<section class="cta">
+
+    <div class="cta-container">
+
+        <h2>Become a Member Today</h2>
+
+        <p>
+            Join our growing community and gain access to thousands of books,
+            journals, research papers, and digital learning resources.
+        </p>
+
+        <div class="cta-buttons">
+
+            <a href="{% url 'register' %}" class="btn btn-primary">
+                Register Now
+            </a>
+
+            <a href="{% url 'login' %}" class="btn btn-outline">
+                Member Login
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+     FOOTER
+=========================== -->
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-section">
+
+            <h3>LibraryMS</h3>
+
+            <p>
+                A modern Library Management System designed to simplify
+                book management and improve access to knowledge.
+            </p>
+
+        </div>
+
+        <div class="footer-section">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Catalog</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+
+        </div>
+
+        <div class="footer-section">
+
+            <h3>Contact</h3>
+
+            <p>Email: info@groupf.com</p>
+            <p>Phone: +234 8188186475</p>
+            <p>Location: Nigeria</p>
+
+        </div>
+
+        <div class="footer-section">
+
+            <h3>Follow Us</h3>
+
+            <div class="social-links">
+
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>
+            &copy; 2026 Library Management System. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>
+

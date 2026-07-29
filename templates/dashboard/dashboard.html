@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="dashboard">
+
+    <h1>Library Dashboard</h1>
+    <p>Welcome to the Library Management System.</p>
+
+    <div class="stats">
+
+        <div class="card">
+            <h2>Total Books</h2>
+            <p>{{ total_books }}</p>
+        </div>
+
+        <div class="card">
+            <h2>Members</h2>
+            <p>{{ total_members }}</p>
+        </div>
+
+        <div class="card">
+            <h2>Borrowed</h2>
+            <p>{{borrowed_books}}</p>
+        </div>
+
+        <div class="card">
+
+            <h2>Available</h2>
+            <p>{{ available_books }}</p>
+        </div>
+
+    </div>
+
+    <div class="actions">
+
+        <a href="{% url 'add_book' %}">Add Book</a>
+
+        <a href="{% url 'book_list' %}">View Books</a>
+
+        <a href="{% url 'member_list' %}">
+            <i class="fa-solid fa-users"></i>
+            <span>Members</span>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

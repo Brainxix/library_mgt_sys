@@ -1,0 +1,238 @@
+/* ==========================================
+   BOOK FORM
+========================================== */
+
+.book-form-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:60px 20px;
+}
+
+.book-card{
+    width:100%;
+    max-width:900px;
+
+    background:rgba(17,24,39,.92);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:24px;
+
+    padding:45px;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+    animation:fadeUp .6s ease;
+}
+
+/* Header */
+
+.book-card h1{
+    font-size:2rem;
+    color:#fbbf24;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.book-card p{
+    color:#d1d5db;
+    text-align:center;
+    margin-bottom:35px;
+    font-size:.95rem;
+}
+
+/* Form */
+form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    color:#f3f4f6;
+    margin-bottom:8px;
+    font-weight:600;
+    font-size:.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:rgba(255,255,255,.06);
+
+    color:#fff;
+
+    font-size:15px;
+
+    transition:.3s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+    color:#9ca3af;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover{
+    border-color:#60a5fa;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    outline:none;
+
+    border-color:#fbbf24;
+
+    box-shadow:0 0 0 4px rgba(251,191,36,.18);
+
+    background:rgba(255,255,255,.09);
+}
+
+/* ===========================
+   LAST ROW
+=========================== */
+
+.form-row{
+    grid-column:1 / -1;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+}
+
+
+/* Buttons */
+
+.form-buttons{
+
+    display:flex;
+
+    gap:18px;
+
+    margin-top:35px;
+}
+
+.save-btn{
+
+    flex:1;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(135deg,#fbbf24,#d97706);
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.save-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 30px rgba(251,191,36,.35);
+}
+
+.cancel-btn{
+
+    flex:1;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:#374151;
+
+    color:white;
+
+    text-decoration:none;
+
+    text-align:center;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.cancel-btn:hover{
+    background:#4b5563;
+}
+
+/* Django Errors */
+
+.errorlist{
+    list-style:none;
+    color:#ef4444;
+    margin-top:8px;
+    font-size:.9rem;
+}
+
+/* Animation */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.book-card{
+    padding:30px;
+}
+
+.form-grid{
+    grid-template-columns:1fr;
+}
+
+.form-buttons{
+    flex-direction:column;
+}
+}

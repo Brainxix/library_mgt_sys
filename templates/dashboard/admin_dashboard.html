@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+        <h1>👋 Welcome back, {{ request.user.username }}</h1>
+        <p>Here's what's happening in your library today.</p>
+    </div>
+
+    <div class="today">
+        {{ today|date:"l, F j, Y" }}
+    </div>
+
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card books">
+        <i class="fa-solid fa-book"></i>
+        <h2>{{ total_books }}</h2>
+        <p>Total Books</p>
+    </div>
+
+    <div class="stat-card members">
+        <i class="fa-solid fa-users"></i>
+        <h2>{{ total_members }}</h2>
+        <p>Members</p>
+    </div>
+
+    <div class="stat-card available">
+        <i class="fa-solid fa-circle-check"></i>
+        <h2>{{ available_books }}</h2>
+        <p>Available</p>
+    </div>
+
+    <div class="stat-card borrowed">
+        <i class="fa-solid fa-book-bookmark"></i>
+        <h2>{{ borrowed_books }}</h2>
+        <p>Borrowed</p>
+    </div>
+
+</div>
+
+<h2>Quick Actions</h2>
+
+<div class="action-grid">
+
+    <a href="{% url 'book_create' %}" class="action-card">
+        <i class="fa-solid fa-plus"></i><br>
+        Add Book
+    </a>
+
+    <a href="{% url 'book_list' %}" class="action-card">
+        <i class="fa-solid fa-book"></i><br>
+        Manage Books
+    </a>
+
+    <a href="{% url 'member_list' %}" class="action-card">
+        <i class="fa-solid fa-users"></i><br>
+        Members
+    </a>
+
+    <a href="{% url 'admin:index' %}" class="action-card">
+        <i class="fa-solid fa-user-shield"></i><br>
+        Users
+    </a>
+
+</div>
+
+<h2>Recently Added Members</h2>
+
+<table class="dashboard-table">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for member in recent_members %}
+
+        <tr>
+            <td>{{ member.first_name }} {{ member.last_name }}</td>
+            <td>{{ member.email }}</td>
+        </tr>
+
+    {% empty %}
+
+        <tr>
+            <td colspan="2">No members yet.</td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

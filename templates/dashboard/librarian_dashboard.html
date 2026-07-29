@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Librarian Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="dashboard-header">
+    <div>
+        <h1>📚 Welcome, {{ request.user.username }}</h1>
+        <p>Manage library operations efficiently.</p>
+    </div>
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card books">
+        <i class="fa-solid fa-book"></i>
+        <h2>{{ total_books }}</h2>
+        <p>Total Books</p>
+    </div>
+
+    <div class="stat-card members">
+        <i class="fa-solid fa-users"></i>
+        <h2>{{ total_members }}</h2>
+        <p>Total Members</p>
+    </div>
+
+    <div class="stat-card available">
+        <i class="fa-solid fa-circle-check"></i>
+        <h2>{{ available_books }}</h2>
+        <p>Available Books</p>
+    </div>
+
+    <div class="stat-card borrowed">
+        <i class="fa-solid fa-book-bookmark"></i>
+        <h2>{{ borrowed_books }}</h2>
+        <p>Borrowed Books</p>
+    </div>
+
+</div>
+
+<h2>Quick Actions</h2>
+
+<div class="action-grid">
+
+    <a href="{% url 'book_create' %}" class="action-card">
+        <i class="fa-solid fa-plus"></i>
+        <h4>Add Book</h4>
+    </a>
+
+    <a href="{% url 'book_list' %}" class="action-card">
+        <i class="fa-solid fa-book"></i>
+        <h4>Manage Books</h4>
+    </a>
+
+    <a href="#" class="action-card">
+        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        <h4>Issue Book</h4>
+    </a>
+
+    <a href="#" class="action-card">
+        <i class="fa-solid fa-rotate-left"></i>
+        <h4>Receive Book</h4>
+    </a>
+
+    <a href="{% url 'member_list' %}" class="action-card">
+        <i class="fa-solid fa-users"></i>
+        <h4>Manage Members</h4>
+    </a>
+
+</div>
+
+{% endblock %}

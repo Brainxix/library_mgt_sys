@@ -1,0 +1,170 @@
+.delete-container{
+
+    min-height:80vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+
+}
+
+.delete-card{
+
+    width:100%;
+
+    max-width:520px;
+
+    background:rgba(17,24,39,.92);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:center;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.35);
+
+    backdrop-filter:blur(15px);
+
+}
+
+.delete-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:rgba(239,68,68,.15);
+
+    color:#ef4444;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:2.2rem;
+
+    margin-bottom:25px;
+
+}
+
+.delete-card h2{
+
+    font-size:2rem;
+
+    margin-bottom:15px;
+
+    color:#fff;
+
+}
+
+.delete-card p{
+
+    color:#cbd5e1;
+
+    line-height:1.7;
+
+}
+
+.warning{
+
+    color:#f87171;
+
+    font-weight:600;
+
+    margin-top:15px;
+
+}
+
+.delete-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:35px;
+
+}
+
+.delete-btn{
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.delete-btn:hover{
+
+    background:#dc2626;
+
+    transform:translateY(-2px);
+
+}
+
+.cancel-btn{
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.cancel-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+@media(max-width:600px){
+
+.delete-actions{
+
+    flex-direction:column;
+
+}
+
+.delete-btn,
+.cancel-btn{
+
+    width:100%;
+
+}
+
+}

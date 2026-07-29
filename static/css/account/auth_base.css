@@ -1,0 +1,289 @@
+/* ==========================================
+   AUTH BACKGROUND
+========================================== */
+
+body{
+
+    background:
+        radial-gradient(circle at top left,#3b82f655,transparent 35%),
+        radial-gradient(circle at bottom right,#06b6d455,transparent 35%),
+        linear-gradient(135deg,#0f172a,#111827,#1e293b);
+
+    overflow-x:hidden;
+
+}
+
+/* ==========================================
+   FLOATING BLOBS
+========================================== */
+
+.blob{
+
+    position:fixed;
+
+    border-radius:50%;
+
+    filter:blur(120px);
+
+    opacity:.15;
+
+    z-index:-1;
+
+    animation:float 12s ease-in-out infinite;
+}
+
+.blob1{
+
+    width:260px;
+    height:260px;
+
+    background:#60a5fa;
+
+    top:-80px;
+    left:-80px;
+}
+
+.blob2{
+
+    width:340px;
+    height:340px;
+
+    background:#06b6d4;
+
+    bottom:-100px;
+    right:-120px;
+
+    animation-delay:3s;
+}
+
+.blob3{
+
+    width:220px;
+    height:220px;
+
+    background:#fbbf24;
+
+    left:40%;
+    top:40%;
+
+    animation-delay:5s;
+}
+
+@keyframes float{
+
+    0%,100%{
+
+        transform:translate(0,0);
+    }
+
+    50%{
+
+        transform:translate(35px,-35px);
+    }
+
+}
+
+/* ==========================================
+   AUTH LAYOUT
+========================================== */
+
+.auth-container{
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    align-items:center;
+
+    position:relative;
+}
+
+/* ==========================================
+   LEFT SIDE
+========================================== */
+
+.auth-left{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:70px;
+
+    color:white;
+}
+
+.left-content{
+
+    max-width:480px;
+
+    animation:slideLeft .7s ease;
+}
+
+.left-content h1{
+
+    font-size:3.5rem;
+
+    line-height:1.2;
+
+    margin-bottom:24px;
+}
+
+.left-content p{
+
+    font-size:1.1rem;
+
+    color:#d1d5db;
+
+    line-height:1.8;
+}
+
+/* ==========================================
+   RIGHT SIDE
+========================================== */
+
+.auth-right{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px;
+}
+
+.auth-card{
+
+    width:100%;
+
+    max-width:470px;
+
+    background:rgba(15,23,42,.75);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:24px;
+
+    padding:45px;
+
+    color:white;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+    animation:slideRight .7s ease;
+
+    transition:.35s;
+}
+
+.auth-card:hover{
+
+    transform:translateY(-5px);
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes slideLeft{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-50px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes slideRight{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(50px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+    }
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+
+.auth-container{
+
+    grid-template-columns:1fr;
+}
+
+.auth-left{
+
+    padding:50px 30px;
+
+    text-align:center;
+}
+
+.left-content h1{
+
+    font-size:2.6rem;
+}
+
+.auth-right{
+
+    padding:20px;
+}
+
+.auth-card{
+
+    max-width:100%;
+}
+
+}
+
+@media(max-width:576px){
+
+.auth-left{
+
+    padding:40px 20px;
+}
+
+.left-content h1{
+
+    font-size:2.1rem;
+}
+
+.left-content p{
+
+    font-size:1rem;
+}
+
+.auth-card{
+
+    padding:30px 22px;
+
+    border-radius:18px;
+}
+
+}

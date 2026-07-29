@@ -1,0 +1,135 @@
+/* ==========================================
+   WHY CHOOSE US
+========================================== */
+
+.why-us{
+
+    padding:90px 8%;
+
+}
+
+.features-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+
+    margin-top:60px;
+
+}
+
+.feature-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:var(--glass);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    transition:var(--transition);
+
+    box-shadow:var(--shadow);
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-12px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 25px 45px rgba(37,99,235,.25);
+
+}
+
+.feature-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    background:rgba(37,99,235,.08);
+
+    border-radius:50%;
+
+    top:-90px;
+
+    right:-90px;
+
+    transition:.5s;
+
+}
+
+.feature-card:hover::before{
+
+    transform:scale(1.4);
+
+}
+
+.feature-card i{
+
+    width:80px;
+
+    height:80px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:auto;
+
+    margin-bottom:25px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+    color:white;
+
+    font-size:2rem;
+
+    transition:.4s;
+
+}
+
+.feature-card:hover i{
+
+    transform:rotate(10deg) scale(1.12);
+
+}
+
+.feature-card h3{
+
+    color:white;
+
+    margin-bottom:15px;
+
+    font-size:1.4rem;
+
+}
+
+.feature-card p{
+
+    color:var(--muted);
+
+    line-height:1.8;
+
+}

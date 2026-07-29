@@ -1,0 +1,65 @@
+/* ==========================
+   SEARCH BOX
+========================== */
+
+.search-box{
+
+    display:flex;
+
+    align-items:center;
+
+    background:white;
+
+    border-radius:60px;
+
+    overflow:hidden;
+
+    margin-bottom:35px;
+
+    max-width:620px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    padding:18px 22px;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#111827;
+
+    font-size:1rem;
+
+}
+
+.search-box button{
+
+    width:70px;
+
+    height:60px;
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.search-box button:hover{
+
+    background:var(--primary-hover);
+
+}

@@ -1,0 +1,193 @@
+/* ==========================================
+   FEATURED BOOKS
+========================================== */
+
+.featured-books{
+
+    padding:90px 8%;
+
+}
+
+.featured-books .section-header{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.featured-books .section-header h2{
+
+    font-size:2.7rem;
+
+    margin-bottom:15px;
+
+}
+
+.featured-books .section-header p{
+
+    color:var(--muted);
+
+    max-width:650px;
+
+    margin:auto;
+
+}
+
+.books-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:30px;
+
+}
+
+.book-card{
+
+    background:var(--glass);
+
+    border:1px solid var(--border);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:var(--radius);
+
+    overflow:hidden;
+
+    transition:var(--transition);
+
+    box-shadow:var(--shadow);
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.book-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:var(--primary);
+
+    box-shadow:0 25px 45px rgba(37,99,235,.25);
+
+}
+
+/* Book Cover */
+
+.book-card img{
+
+    width:100%;
+
+    height:320px;
+
+    object-fit:cover;
+
+    transition:.4s;
+
+}
+
+.book-card:hover img{
+
+    transform:scale(1.05);
+
+}
+
+/* Book Content */
+
+.book-card-content{
+
+    padding:22px;
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.book-card h3{
+
+    font-size:1.25rem;
+
+    margin-bottom:10px;
+
+    color:white;
+
+}
+
+.book-card p{
+
+    color:var(--muted);
+
+    margin-bottom:18px;
+
+    line-height:1.6;
+
+}
+
+/* Category Badge */
+
+.book-category{
+
+    display:inline-block;
+
+    background:rgba(37,99,235,.18);
+
+    color:#7dd3fc;
+
+    padding:6px 14px;
+
+    border-radius:30px;
+
+    font-size:.85rem;
+
+    margin-bottom:18px;
+
+}
+
+/* Footer */
+
+.book-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:auto;
+
+}
+
+.book-footer span{
+
+    color:var(--gold);
+
+    font-weight:600;
+
+}
+
+.book-footer a{
+
+    color:white;
+
+    background:var(--primary);
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.book-footer a:hover{
+
+    background:var(--primary-hover);
+
+}

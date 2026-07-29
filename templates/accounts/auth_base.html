@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}Library Management System{% endblock %}
+    </title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    <!-- Authentication Styles -->
+    <link rel="stylesheet" href="{% static 'css/account/auth_base.css' %}">
+
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="auth-container">
+
+        <div class="auth-left">
+
+            <div class="left-content">
+
+                <h1>Library Management System</h1>
+
+                <p>
+                    Read. Learn. Discover.
+                    Manage books and library activities with ease.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="auth-right">
+
+            <div class="auth-card">
+
+                {% block auth_content %}
+                {% endblock %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/auth.js' %}"></script>
+
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+</html>
