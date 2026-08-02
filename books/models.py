@@ -22,6 +22,7 @@ class Book(models.Model):
         ("BORROWED", "Borrowed"),
         ("RESERVED", "Reserved"),
     )
+    
 
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=250, blank=True)

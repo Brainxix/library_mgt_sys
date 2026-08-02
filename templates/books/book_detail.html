@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/book/book_detail.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<section class="book-detail">
+
+    <div class="book-wrapper">
+
+        <div class="book-image">
+
+            {% if book.cover_image %}
+                <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
+            {% else %}
+                <img src="{% static 'images/default-book.jpg' %}" alt="Book">
+            {% endif %}
+
+        </div>
+
+        <div class="book-info">
+
+            <span class="category">
+                {{ book.category.name }}
+            </span>
+
+            <h1>{{ book.title }}</h1>
+
+            <p><strong>Author:</strong> {{ book.author }}</p>
+
+            <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+
+            <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+
+            <p><strong>Publication Year:</strong> {{ book.publication_year }}</p>
+
+            <p><strong>Language:</strong> {{ book.language }}</p>
+
+            <p><strong>Available Copies:</strong> {{ book.available_copies }}</p>
+
+            <p><strong>Status:</strong>
+                {% if book.available_copies > 0 %}
+                    Available
+                {% else %}
+                    Out of Stock
+                {% endif %}
+            </p>
+
+            <h3>Description</h3>
+
+            <p>
+                {{ book.description }}
+            </p>
+
+            <div class="buttons">
+
+                {% if book.digital_file %}
+                    <a href="{{ book.digital_file.url }}" class="btn btn-primary">
+                        Download PDF
+                    </a>
+                {% endif %}
+
+                <a href="{% url 'book_list' %}" class="btn btn-outline">
+                    Back
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

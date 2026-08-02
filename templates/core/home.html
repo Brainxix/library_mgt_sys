@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{% static 'css/homepage/categories.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/featured.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/homepage/responsive.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/homepage/responsive.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/homepage/why-us.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/recent.css' %}">
     <link rel="stylesheet" href="{% static 'css/homepage/cta.css' %}">
@@ -127,7 +127,7 @@
 
         <div class="hero-buttons">
 
-            <a href="#" class="btn btn-primary">
+            <a href="{% url 'book_list' %}" class="btn btn-primary">
 
                 Browse Books
 
@@ -255,7 +255,7 @@
                 <div class="book-footer">
                     <span>{{ book.available_copies }} Available</span>
 
-                    <a href="#">View</a>
+                    <a href="{% url 'book_detail' book.pk %} ">View</a>
                 </div>
 
             </div>

@@ -11,10 +11,13 @@ def book_list(request):
 
 def add_book(request):
     if request.method == "POST":
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("book_list")
+        
+        else:
+            print(form.errors)
     else:
         form = BookForm()
 
@@ -25,7 +28,7 @@ def edit_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
 
     if request.method == "POST":
-        form = BookForm(request.POST, instance=book)
+        form = BookForm(request.POST, request.FILES, instance=book,)
         if form.is_valid():
             form.save()
             return redirect("book_list")
@@ -43,4 +46,10 @@ def delete_book(request, pk):
         return redirect("book_list")
 
     return render(request, "books/book_confirm_delete.html", {"book": book})
+
+def book_detail(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    return render(request, "books/book_detail.html",{
+         "book":book
+     })
 
