@@ -7,67 +7,128 @@
 <link rel="stylesheet" href="{% static 'css/book/book_detail.css' %}">
 {% endblock %}
 
-
 {% block content %}
 
 <section class="book-detail">
 
     <div class="book-wrapper">
 
+        <!-- Book Cover -->
         <div class="book-image">
 
             {% if book.cover_image %}
                 <img src="{{ book.cover_image.url }}" alt="{{ book.title }}">
             {% else %}
-                <img src="{% static 'images/default-book.jpg' %}" alt="Book">
+                <img src="{% static 'images/default-book.png' %}" alt="No Cover">
             {% endif %}
 
         </div>
 
+        <!-- Book Information -->
         <div class="book-info">
 
-            <span class="category">
-                {{ book.category.name }}
-            </span>
+            <div class="book-tags">
+
+                <span class="category">
+                    {{ book.category }}
+                </span>
+
+                <span class="book-type">
+                    {{ book.get_book_type_display }}
+                </span>
+
+                <span class="status {{ book.status|lower }}">
+                    {{ book.get_status_display }}
+                </span>
+
+                {% if book.featured %}
+                    <span class="featured">
+                        ⭐ Featured
+                    </span>
+                {% endif %}
+
+            </div>
 
             <h1>{{ book.title }}</h1>
 
-            <p><strong>Author:</strong> {{ book.author }}</p>
+            {% if book.subtitle %}
+                <h3>{{ book.subtitle }}</h3>
+            {% endif %}
 
-            <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+            <div class="info-grid">
 
-            <p><strong>Publisher:</strong> {{ book.publisher }}</p>
+                <div>
+                    <strong>Author</strong>
+                    <p>{{ book.author }}</p>
+                </div>
 
-            <p><strong>Publication Year:</strong> {{ book.publication_year }}</p>
+                <div>
+                    <strong>ISBN</strong>
+                    <p>{{ book.isbn }}</p>
+                </div>
 
-            <p><strong>Language:</strong> {{ book.language }}</p>
+                <div>
+                    <strong>Publisher</strong>
+                    <p>{{ book.publisher|default:"Not specified" }}</p>
+                </div>
 
-            <p><strong>Available Copies:</strong> {{ book.available_copies }}</p>
+                <div>
+                    <strong>Publication Year</strong>
+                    <p>{{ book.publication_year }}</p>
+                </div>
 
-            <p><strong>Status:</strong>
-                {% if book.available_copies > 0 %}
-                    Available
+                <div>
+                    <strong>Edition</strong>
+                    <p>{{ book.edition|default:"N/A" }}</p>
+                </div>
+
+                <div>
+                    <strong>Language</strong>
+                    <p>{{ book.language }}</p>
+                </div>
+
+                <div>
+                    <strong>Shelf Location</strong>
+                    <p>{{ book.shelf_location|default:"Not assigned" }}</p>
+                </div>
+
+                <div>
+                    <strong>Copies</strong>
+                    <p>{{ book.available_copies }} / {{ book.total_copies }}</p>
+                </div>
+
+            </div>
+
+            <div class="description">
+
+                <h2>Description</h2>
+
+                {% if book.description %}
+                    <p>{{ book.description }}</p>
                 {% else %}
-                    Out of Stock
+                    <p>No description has been added for this book.</p>
                 {% endif %}
-            </p>
 
-            <h3>Description</h3>
-
-            <p>
-                {{ book.description }}
-            </p>
+            </div>
 
             <div class="buttons">
 
                 {% if book.digital_file %}
                     <a href="{{ book.digital_file.url }}" class="btn btn-primary">
-                        Download PDF
+                        📥 Download Book
                     </a>
                 {% endif %}
 
+                <a href="{% url 'edit_book' book.id %}" class="btn btn-warning">
+                    ✏️ Edit
+                </a>
+
+                <a href="{% url 'delete_book' book.id %}" class="btn btn-danger">
+                    🗑 Delete
+                </a>
+
                 <a href="{% url 'book_list' %}" class="btn btn-outline">
-                    Back
+                    ← Back to Library
                 </a>
 
             </div>

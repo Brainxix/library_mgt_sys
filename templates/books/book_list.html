@@ -4,14 +4,16 @@
 {% block title %}Book Management{% endblock %}
 
 {% block extra_css %}
-
-    <link rel="stylesheet" href="{% static 'css/book/book_list.css' %}">
-
+<link rel="stylesheet" href="{% static 'css/book/book_list.css' %}">
 {% endblock %}
 
 {% block content %}
 
 <div class="container">
+
+    <!-- ==========================
+         Page Header
+    =========================== -->
 
     <div class="page-header">
 
@@ -26,18 +28,222 @@
 
     </div>
 
+    <!-- ==========================
+     Library Statistics
+========================== -->
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📚
+        </div>
+
+        <div class="stat-content">
+
+            <h3>Total Books</h3>
+
+            <h2>{{ total_books }}</h2>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            ✅
+        </div>
+
+        <div class="stat-content">
+
+            <h3>Available</h3>
+
+            <h2>{{ available_books }}</h2>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            📖
+        </div>
+
+        <div class="stat-content">
+
+            <h3>Borrowed</h3>
+
+            <h2>{{ borrowed_books }}</h2>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            ⭐
+        </div>
+
+        <div class="stat-content">
+
+            <h3>Featured</h3>
+
+            <h2>{{ featured_books }}</h2>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- ==========================
+         Search & Filters
+    =========================== -->
+
+    <div class="search-container">
+
+        <form method="GET">
+
+            <!-- Search -->
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Search by title, author or ISBN..."
+                value="{{ query|default:'' }}"
+            >
+
+            <!-- Category -->
+
+            <select name="category">
+
+                <option value="">All Categories</option>
+
+                {% for category in categories %}
+
+                    <option
+                        value="{{ category.id }}"
+                        {% if request.GET.category == category.id|stringformat:"s" %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ category.name }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+            <!-- Status -->
+
+            <select name="status">
+
+                <option value="">All Status</option>
+
+                {% for value, label in status_choices %}
+
+                    <option
+                        value="{{ value }}"
+                        {% if request.GET.status == value %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ label }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+            <!-- Sort -->
+
+            <select name="sort">
+
+                <option value="newest"
+                    {% if sort == "newest" %}
+                        selected
+                    {% endif %}
+                >
+                    Newest First
+                </option>
+
+                <option value="oldest"
+                    {% if sort == "oldest" %}
+                        selected
+                    {% endif %}
+                >
+                    Oldest First
+                </option>
+
+                <option value="title"
+                    {% if sort == "title" %}
+                        selected
+                    {% endif %}
+                >
+                    Title (A-Z)
+                </option>
+
+                <option value="title_desc"
+                    {% if sort == "title_desc" %}
+                        selected
+                    {% endif %}
+                >
+                    Title (Z-A)
+                </option>
+
+                <option value="author"
+                    {% if sort == "author" %}
+                        selected
+                    {% endif %}
+                >
+                    Author (A-Z)
+                </option>
+
+                <option value="author_desc"
+                    {% if sort == "author_desc" %}
+                        selected
+                    {% endif %}
+                >
+                    Author (Z-A)
+                </option>
+
+            </select>
+
+            <button type="submit">
+                🔍 Search
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- ==========================
+         Books Table
+    =========================== -->
+
     <div class="table-card">
 
         <table>
 
             <thead>
+
                 <tr>
-                    <th>Title</th>
+
+                    <th>Cover</th>
+                    <th>Book</th>
                     <th>Author</th>
                     <th>Category</th>
+                    <th>Type</th>
+                    <th>Status</th>
                     <th>Available</th>
                     <th>Actions</th>
+
                 </tr>
+
             </thead>
 
             <tbody>
@@ -46,27 +252,115 @@
 
                 <tr>
 
-                    <td>{{ book.title }}</td>
+                    <!-- Cover -->
+
+                    <td class="book-cover">
+
+                        {% if book.cover_image %}
+
+                            <img
+                                src="{{ book.cover_image.url }}"
+                                alt="{{ book.title }}"
+                                class="cover-image"
+                            >
+
+                        {% else %}
+
+                            <img
+                                src="{% static 'images/default-book.png' %}"
+                                alt="No Cover"
+                                class="cover-image"
+                            >
+
+                        {% endif %}
+
+                    </td>
+
+                    <!-- Book -->
+
+                    <td>
+
+                        <strong>{{ book.title }}</strong>
+
+                        {% if book.subtitle %}
+                            <br>
+                            <small>{{ book.subtitle }}</small>
+                        {% endif %}
+
+                        <br>
+
+                        <small>
+
+                            <strong>ISBN:</strong>
+
+                            {{ book.isbn }}
+
+                        </small>
+
+                    </td>
+
+                    <!-- Author -->
 
                     <td>{{ book.author }}</td>
 
+                    <!-- Category -->
+
                     <td>{{ book.category }}</td>
 
+                    <!-- Book Type -->
+
                     <td>
-                        <span class="status">
-                            {{ book.available_copies }}
-                        </span>
+
+                        {{ book.get_book_type_display }}
+
                     </td>
+
+                    <!-- Status -->
+
+                    <td>
+
+                        <span class="status {{ book.status|lower }}">
+
+                            {{ book.get_status_display }}
+
+                        </span>
+
+                    </td>
+
+                    <!-- Copies -->
+
+                    <td>
+
+                        {{ book.available_copies }}
+
+                        /
+
+                        {{ book.total_copies }}
+
+                    </td>
+
+                    <!-- Actions -->
 
                     <td class="actions">
 
-                        <a href="{% url 'edit_book' book.id %}"
-                           class="edit-btn">
+                        <a
+                            href="{% url 'book_detail' book.id %}"
+                            class="view-btn"
+                        >
+                            👁 View
+                        </a>
+
+                        <a
+                            href="{% url 'edit_book' book.id %}"
+                            class="edit-btn"
+                        >
                             ✏️ Edit
                         </a>
 
-                        <a href="{% url 'delete_book' book.id %}"
-                           class="delete-btn">
+                        <a
+                            href="{% url 'delete_book' book.id %}"
+                            class="delete-btn"
+                        >
                             🗑 Delete
                         </a>
 
@@ -77,9 +371,13 @@
                 {% empty %}
 
                 <tr>
-                    <td colspan="5" class="empty">
+
+                    <td colspan="8" class="empty">
+
                         📚 No books available.
+
                     </td>
+
                 </tr>
 
                 {% endfor %}

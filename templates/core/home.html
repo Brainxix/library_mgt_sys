@@ -255,7 +255,8 @@
                 <div class="book-footer">
                     <span>{{ book.available_copies }} Available</span>
 
-                    <a href="{% url 'book_detail' book.pk %} ">View</a>
+                    <a href="{% url 'book_detail' book.id %}" class="view-btn"> 👁 View
+                    </a>
                 </div>
 
             </div>
@@ -437,7 +438,8 @@
                         {{ book.publication_year }}
                     </span>
 
-                    <a href="#">View</a>
+                    <a href="{% url 'book_detail' book.id %}" class="view-btn">  👁 View
+                    </a>
 
                 </div>
 
