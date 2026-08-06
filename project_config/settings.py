@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Environment Variables
 # --------------------------------------------------
 env = environ.Env(
-    DEBUG=(bool, True)
+    DJANGO_DEBUG=(bool, True)
 )
 
 # Read .env file
@@ -30,9 +30,12 @@ SECRET_KEY = env(
     default="django-insecure-change-this-before-production"
 )
 
-DEBUG = env("DEBUG", default=True)
+DEBUG = env("DJANGO_DEBUG", default=True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list(
+    "ALLOWED_HOSTS",
+    default=["localhost", "127.0.0.1"],
+)
 
 # --------------------------------------------------
 # Applications
@@ -98,19 +101,26 @@ WSGI_APPLICATION = "project_config.wsgi.application"
 # --------------------------------------------------
 # Database
 # --------------------------------------------------
-DATABASES = {
-    "default": {
-        "ENGINE": env(
-            "DB_ENGINE",
-            default="django.db.backends.postgresql"
-        ),
-        "NAME": env("DB_NAME"),
-        "USER": env("DB_USER"),
-        "PASSWORD": env("DB_PASSWORD"),
-        "HOST": env("DB_HOST"),
-        "PORT": env("DB_PORT"),
+DB_ENGINE = env("DB_ENGINE", default="django.db.backends.sqlite3")
+
+if DB_ENGINE == "django.db.backends.sqlite3":
+    DATABASES = {
+        "default": {
+            "ENGINE": DB_ENGINE,
+            "NAME": env("DB_NAME", default=BASE_DIR / "db.sqlite3"),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": DB_ENGINE,
+            "NAME": env("DB_NAME"),
+            "USER": env("DB_USER"),
+            "PASSWORD": env("DB_PASSWORD"),
+            "HOST": env("DB_HOST"),
+            "PORT": env("DB_PORT"),
+        }
+    }
 
 # --------------------------------------------------
 # Password Validation
