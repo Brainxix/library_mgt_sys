@@ -19,3 +19,12 @@ class RegisterForm(UserCreationForm):
             "password1",
             "password2",
         ]
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["username", "email", "phone", "address", "profile_picture"]
+        widgets = {
+            "address": forms.Textarea(attrs={"rows": 3}),
+        }

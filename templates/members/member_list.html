@@ -10,106 +10,59 @@ Members
 {% endblock %}
 
 {% block content %}
-
 <div class="container">
-
     <div class="page-header">
-
         <div>
-
             <h1>Member Management</h1>
-
-            <p>
-                Manage all registered library members.
-            </p>
-
+            <p>Manage all registered library members.</p>
         </div>
-
         <a href="{% url 'add_member' %}" class="btn">
             <i class="fa-solid fa-user-plus"></i>
             Add Member
         </a>
-
     </div>
 
-    <div class="table-container">
+    <form method="get" class="search-bar">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search by name, department, email or registration number">
+        <button type="submit">Search</button>
+    </form>
 
+    <div class="table-card">
         <table>
-
             <thead>
-
                 <tr>
-
-                    <th>Name</th>
-
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Email</th>
-
-                    <th>Phone</th>
-
+                    <th>Department</th>
+                    <th>Registration</th>
+                    <th>Status</th>
                     <th>Joined</th>
-
                     <th>Actions</th>
-
                 </tr>
-
             </thead>
-
             <tbody>
-
                 {% for member in members %}
-
                 <tr>
-
-                    <td>
-                        {{ member.first_name }} {{ member.last_name }}
-                    </td>
-
-                    <td>
-                        {{ member.email }}
-                    </td>
-
-                    <td>
-                        {{ member.phone }}
-                    </td>
-
-                    <td>
-                        {{ member.joined_date }}
-                    </td>
-
+                    <td>{{ member.first_name }}</td>
+                    <td>{{ member.last_name }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.department }}</td>
+                    <td>{{ member.registration_number }}</td>
+                    <td><span class="status">{{ member.status }}</span></td>
+                    <td>{{ member.date_joined }}</td>
                     <td class="actions">
-
-                        <a href="{% url 'edit_member' member.id %}" class="edit-btn">
-                            Edit
-                        </a>
-
-                        <a href="{% url 'delete_member' member.id %}" class="delete-btn">
-                            Delete
-                        </a>
-
+                        <a href="{% url 'edit_member' member.id %}" class="edit-btn">Edit</a>
+                        <a href="{% url 'delete_member' member.id %}" class="delete-btn">Delete</a>
                     </td>
-
                 </tr>
-
                 {% empty %}
-
                 <tr>
-
-                    <td colspan="5" class="empty">
-
-                        No members have been registered.
-
-                    </td>
-
+                    <td colspan="8" class="empty">No members matched your search.</td>
                 </tr>
-
                 {% endfor %}
-
             </tbody>
-
         </table>
-
     </div>
-
 </div>
-
 {% endblock %}

@@ -8,11 +8,8 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="delete-container">
-
     <div class="delete-card">
-
         <div class="delete-icon">
             <i class="fa-solid fa-user-xmark"></i>
         </div>
@@ -21,21 +18,15 @@
 
         <p>
             Are you sure you want to delete
-            <strong>
-                {{ member.first_name }} {{ member.last_name }}
-            </strong>?
+            <strong>{{ member.first_name }} {{ member.last_name }}</strong>?
         </p>
 
-        <p class="warning">
-            This action cannot be undone.
-        </p>
+        <p class="warning">This action cannot be undone.</p>
 
         <form method="POST">
-
             {% csrf_token %}
 
             <div class="delete-actions">
-
                 <button type="submit" class="delete-btn">
                     <i class="fa-solid fa-trash"></i>
                     Delete Member
@@ -45,13 +36,8 @@
                     <i class="fa-solid fa-arrow-left"></i>
                     Cancel
                 </a>
-
             </div>
-
         </form>
-
     </div>
-
 </div>
-
 {% endblock %}

@@ -1,4 +1,19 @@
-<h2>Welcome {{ request.user.email }}</h2>
-<p> Email: {{request.user.email}}</p>
+{% extends "base.html" %}
 
-<a href="{% url 'logout' %}"> Logout</a>
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div style="max-width: 700px; margin: 40px auto; padding: 24px; background: #111827; color: white; border-radius: 16px;">
+    <h2>My Profile</h2>
+    <p>Update your account details below.</p>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="margin-top: 12px; padding: 10px 16px; border-radius: 8px; background: #fbbf24; color: #111827; border: none; font-weight: 600;">Save Changes</button>
+    </form>
+
+    <hr style="margin: 24px 0;">
+    <a href="{% url 'logout' %}" style="color: #fbbf24;">Logout</a>
+</div>
+{% endblock %}
