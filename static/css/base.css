@@ -296,7 +296,7 @@ TOPBAR
 
     align-items:center;
 
-    gap:22px;
+    gap:1rem;
 
     font-size:1.3rem;
 }
@@ -313,16 +313,6 @@ TOPBAR
     color:var(--gold);
 
     transform:scale(1.15);
-}
-
-.user-info{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:flex-end;
-
 }
 
 .user-info strong{
@@ -958,4 +948,150 @@ table{
 
     color:#bfdbfe;
 
+}
+
+/* =========================================
+   NOTIFICATION
+========================================= */
+
+.notification-btn {
+    position: relative;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+    border-radius: 0.6rem;
+
+    background: transparent;
+    color: #d1d5db;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.notification-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fbbf24;
+}
+
+
+/* Notification indicator */
+
+.notification-dot {
+    position: absolute;
+
+    top: 0.45rem;
+    right: 0.45rem;
+
+    width: 0.4rem;
+    height: 0.4rem;
+
+    border-radius: 50%;
+
+    background: #f59e0b;
+
+    border: 2px solid #111827;
+}
+
+
+/* =========================================
+   USER PROFILE
+========================================= */
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    padding: 0.4rem 0.65rem;
+
+    border-radius: 0.7rem;
+
+    color: inherit;
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease;
+}
+
+.user-profile:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================
+   TOPBAR AVATAR
+========================================= */
+
+.topbar-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #252b35;
+
+    border: 2px solid #f59e0b;
+
+    color: #fbbf24;
+
+    font-size: 0.9rem;
+}
+
+.topbar-avatar img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
+   USER INFO
+========================================= */
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.15rem;
+
+    min-width: 0;
+}
+
+.user-info strong {
+    color: #f3f4f6;
+
+    font-size: 0.82rem;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.user-info small {
+    color: #8b95a5;
+
+    font-size: 0.7rem;
+
+    line-height: 1.2;
 }

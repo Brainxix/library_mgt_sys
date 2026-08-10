@@ -155,23 +155,42 @@
         <!-- Topbar -->
         <header class="topbar">
 
-            <h2>Library Management System</h2>
-
+            <h2>{% block page_heading %}Dashboard{% endblock %}</h2>
             <div class="user">
 
-                <i class="fa-solid fa-bell"></i>
+                <!-- Notification -->
+                <button class="notification-btn" type="button" aria-label="Notifications">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
 
-                <div class="user-info">
+                <!-- User Profile -->
+                <a href="{% url 'profile' %}" class="user-profile">
 
-                    <strong>{{ request.user.username }}</strong><br>
+                    <div class="topbar-avatar">
 
-                    <small>{{ request.user.get_role_display }}</small>
+                        {% if request.user.profile_picture %}
+                            <img
+                                src="{{ request.user.profile_picture.url }}"
+                                alt="{{ request.user.username }} profile picture"
+                            >
+                        {% else %}
+                            <i class="fa-solid fa-user"></i>
+                        {% endif %}
 
-                </div>
+                    </div>
 
-                <i class="fa-solid fa-circle-user"></i>
+                    <div class="user-info">
 
-            </div>
+                        <strong>{{ request.user.username }}</strong>
+
+                        <small>{{ request.user.get_role_display }}</small>
+
+                    </div>
+
+                </a>
+
+            </div>     
         </header>
 
         <!-- Django Messages -->

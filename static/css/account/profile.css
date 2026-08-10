@@ -1,0 +1,485 @@
+/* =========================================
+   PROFILE PAGE
+========================================= */
+
+.profile-page-header {
+    margin-bottom: 1.5rem;
+}
+
+.profile-eyebrow {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+
+    color: #f59e0b;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.profile-page-header h1 {
+    margin: 0;
+
+    color: #f3f4f6;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.profile-page-header p {
+    margin: 0.4rem 0 0;
+
+    color: #8b95a5;
+    font-size: 0.85rem;
+}
+
+
+/* =========================================
+   PROFILE CARD
+========================================= */
+
+.profile-card {
+    width: 100%;
+    overflow: hidden;
+
+    background: #181c24;
+    border: 1px solid #2b313d;
+    border-radius: 1rem;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================
+   PROFILE CARD HEADER
+========================================= */
+
+.profile-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    padding: 1.4rem 1.6rem;
+
+    background: #1e232d;
+    border-bottom: 1px solid #2b313d;
+}
+
+.profile-heading h2 {
+    margin: 0;
+
+    color: #f3f4f6;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.profile-heading p {
+    margin: 0.3rem 0 0;
+
+    color: #8b95a5;
+    font-size: 0.78rem;
+}
+
+
+/* =========================================
+   PROFILE AVATAR
+========================================= */
+
+.profile-avatar {
+    width: 4rem;
+    height: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    overflow: hidden;
+
+    border-radius: 50%;
+    border: 2px solid #f59e0b;
+
+    background: #292f39;
+
+    color: #fbbf24;
+    font-size: 1.25rem;
+
+    box-shadow:
+        0 0 0 4px rgba(245, 158, 11, 0.07);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
+   FORM AREA
+========================================= */
+
+.profile-form {
+    padding: 1.6rem;
+
+    background: #181c24;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+    margin-bottom: 1.15rem;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 0.45rem;
+
+    color: #cbd5e1;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    min-height: 2.7rem;
+    padding: 0.7rem 0.85rem;
+
+    background: #10141a;
+
+    border: 1px solid #303744;
+    border-radius: 0.5rem;
+
+    color: #f3f4f6;
+
+    font-family: inherit;
+    font-size: 0.84rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* =========================================
+   PLACEHOLDER
+========================================= */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #687282;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: #46505e;
+}
+
+
+/* =========================================
+   FOCUS
+========================================= */
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background: #141922;
+
+    border-color: #f59e0b;
+
+    box-shadow:
+        0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+.form-group textarea {
+    min-height: 7rem;
+    resize: vertical;
+}
+
+
+/* =========================================
+   FILE UPLOAD
+========================================= */
+
+.file-input-wrapper {
+    padding: 0.75rem;
+
+    background: #10141a;
+
+    border: 1px dashed #3b4350;
+    border-radius: 0.5rem;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.file-input-wrapper:hover {
+    background: #141922;
+    border-color: #f59e0b;
+}
+
+.file-input-wrapper input[type="file"] {
+    width: 100%;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #9ca3af;
+
+    cursor: pointer;
+}
+
+.file-input-wrapper input[type="file"]::file-selector-button {
+    margin-right: 0.7rem;
+
+    padding: 0.45rem 0.75rem;
+
+    border: 1px solid #3b4350;
+    border-radius: 0.4rem;
+
+    background: #202630;
+    color: #d1d5db;
+
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.file-input-wrapper input[type="file"]::file-selector-button:hover {
+    background: #2a303b;
+    border-color: #f59e0b;
+    color: #fbbf24;
+}
+
+
+/* =========================================
+   HELP TEXT
+========================================= */
+
+.help-text {
+    display: block;
+
+    margin-top: 0.4rem;
+
+    color: #707987;
+
+    font-size: 0.7rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   FIELD ERRORS
+========================================= */
+
+.field-error {
+    display: block;
+
+    margin-top: 0.35rem;
+
+    color: #f87171;
+
+    font-size: 0.72rem;
+}
+
+
+/* =========================================
+   FORM ERRORS
+========================================= */
+
+.form-errors {
+    margin-bottom: 1.25rem;
+    padding: 0.8rem 0.9rem;
+
+    background: rgba(239, 68, 68, 0.06);
+
+    border: 1px solid rgba(248, 113, 113, 0.2);
+    border-radius: 0.5rem;
+
+    color: #fca5a5;
+}
+
+.form-errors p {
+    margin: 0;
+
+    font-size: 0.78rem;
+}
+
+
+/* =========================================
+   ACTION AREA
+========================================= */
+
+.profile-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+
+    border-top: 1px solid #2b313d;
+}
+
+
+/* =========================================
+   SAVE BUTTON
+========================================= */
+
+.save-profile-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    min-height: 2.55rem;
+
+    padding: 0.6rem 1.1rem;
+
+    border: none;
+    border-radius: 0.5rem;
+
+    background: #f59e0b;
+    color: #111827;
+
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.save-profile-btn:hover {
+    background: #fbbf24;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 15px rgba(245, 158, 11, 0.16);
+}
+
+
+/* =========================================
+   LOGOUT BUTTON
+========================================= */
+
+.logout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 2.55rem;
+
+    padding: 0.6rem 1.1rem;
+
+    background: transparent;
+
+    border: 1px solid #363e4b;
+    border-radius: 0.5rem;
+
+    color: #9ca3af;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.logout-btn:hover {
+    color: #f87171;
+
+    border-color: #7f1d1d;
+
+    background: rgba(127, 29, 29, 0.1);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .profile-page-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .profile-card-header {
+        padding: 1.25rem;
+    }
+
+    .profile-form {
+        padding: 1.25rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .profile-card-header {
+        align-items: flex-start;
+    }
+
+    .profile-avatar {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .save-profile-btn,
+    .profile-logout-btn {
+        width: 100%;
+    }
+}

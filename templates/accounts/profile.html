@@ -1,19 +1,189 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}My Profile{% endblock %}
+{% block title %}My Profile | LibraryMS{% endblock %}
+
+{% block page_heading %}My Profile{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/account/profile.css' %}">
+{% endblock %}
 
 {% block content %}
-<div style="max-width: 700px; margin: 40px auto; padding: 24px; background: #111827; color: white; border-radius: 16px;">
-    <h2>My Profile</h2>
-    <p>Update your account details below.</p>
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" style="margin-top: 12px; padding: 10px 16px; border-radius: 8px; background: #fbbf24; color: #111827; border: none; font-weight: 600;">Save Changes</button>
-    </form>
+    <!-- Page Header -->
+    <div class="profile-page-header">
+        <div>
+            <span class="profile-eyebrow">ACCOUNT SETTINGS</span>
+            <h1>My Profile</h1>
+            <p>Manage your personal information and account preferences.</p>
+        </div>
+    </div>
 
-    <hr style="margin: 24px 0;">
-    <a href="{% url 'logout' %}" style="color: #fbbf24;">Logout</a>
-</div>
+    <!-- Profile Card -->
+    <div class="profile-card">
+
+        <!-- Profile Card Header -->
+        <div class="profile-card-header">
+
+            <div class="profile-avatar">
+                {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" alt="Profile picture">
+                {% else %}
+                    <span>👤</span>
+                {% endif %}
+            </div>
+
+            <div class="profile-heading">
+                <h2>Personal Information</h2>
+                <p>Keep your profile information up to date.</p>
+            </div>
+
+        </div>
+
+        <!-- Form -->
+        <form method="post"
+              enctype="multipart/form-data"
+              class="profile-form">
+
+            {% csrf_token %}
+
+            <!-- Form Errors -->
+            {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+
+            <!-- Username -->
+            {% if form.username %}
+            <div class="form-group">
+                {{ form.username.label_tag }}
+
+                {{ form.username }}
+
+                {% if form.username.help_text %}
+                    <small class="help-text">
+                        {{ form.username.help_text }}
+                    </small>
+                {% endif %}
+
+                {% for error in form.username.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+            <!-- First Name -->
+            {% if form.first_name %}
+            <div class="form-group">
+                {{ form.first_name.label_tag }}
+
+                {{ form.first_name }}
+
+                {% for error in form.first_name.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+            <!-- Last Name -->
+            {% if form.last_name %}
+            <div class="form-group">
+                {{ form.last_name.label_tag }}
+
+                {{ form.last_name }}
+
+                {% for error in form.last_name.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+            <!-- Email -->
+            {% if form.email %}
+            <div class="form-group">
+                {{ form.email.label_tag }}
+
+                {{ form.email }}
+
+                {% for error in form.email.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+            <!-- Profile Picture -->
+            {% if form.profile_picture %}
+            <div class="form-group">
+
+                {{ form.profile_picture.label_tag }}
+
+                <div class="file-input-wrapper">
+                    {{ form.profile_picture }}
+                </div>
+
+                {% for error in form.profile_picture.errors %}
+                    <small class="field-error">{{ error }}</small>
+                {% endfor %}
+
+            </div>
+            {% endif %}
+
+
+            <!-- Other Fields -->
+            {% for field in form %}
+                {% if field.name != "username" and field.name != "first_name" and field.name != "last_name" and field.name != "email" and field.name != "profile_picture" %}
+
+                    <div class="form-group">
+
+                        {{ field.label_tag }}
+
+                        {{ field }}
+
+                        {% if field.help_text %}
+                            <small class="help-text">
+                                {{ field.help_text }}
+                            </small>
+                        {% endif %}
+
+                        {% for error in field.errors %}
+                            <small class="field-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+
+
+            <!-- Actions -->
+            <div class="profile-actions">
+
+                <button type="submit" class="save-profile-btn">
+                    <span>✓</span>
+                    Save Changes
+                </button>
+
+                <a href="{% url 'logout' %}" class="profile-logout-btn">
+                    Logout
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+
 {% endblock %}
