@@ -21,3 +21,6 @@ venv/
 # VS Code
 # ==========================
 .vscode/
+
+
+old_lms_data.sql
