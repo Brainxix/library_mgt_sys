@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}
@@ -7,7 +8,6 @@ Admin Dashboard
 {% block content %}
 
 <div class="dashboard-header">
-
     <div>
         <h1>👋 Welcome back, {{ request.user.username }}</h1>
         <p>Here's what's happening in your library today.</p>
@@ -16,9 +16,10 @@ Admin Dashboard
     <div class="today">
         {{ today|date:"l, F j, Y" }}
     </div>
-
 </div>
 
+
+<!-- Statistics -->
 <div class="stats-grid">
 
     <div class="stat-card books">
@@ -47,62 +48,76 @@ Admin Dashboard
 
 </div>
 
-<h2>Quick Actions</h2>
 
-<div class="action-grid">
+<!-- Quick Actions -->
+<div class="quick-actions">
 
     <a href="{% url 'book_create' %}" class="action-card">
-        <i class="fa-solid fa-plus"></i><br>
-        Add Book
+        <i class="fa-solid fa-plus"></i>
+        <span>Add Book</span>
     </a>
 
     <a href="{% url 'book_list' %}" class="action-card">
-        <i class="fa-solid fa-book"></i><br>
-        Manage Books
+        <i class="fa-solid fa-book"></i>
+        <span>Manage Books</span>
     </a>
 
     <a href="{% url 'member_list' %}" class="action-card">
-        <i class="fa-solid fa-users"></i><br>
-        Members
+        <i class="fa-solid fa-users"></i>
+        <span>Members</span>
     </a>
 
     <a href="{% url 'admin:index' %}" class="action-card">
-        <i class="fa-solid fa-user-shield"></i><br>
-        Users
+        <i class="fa-solid fa-user-shield"></i>
+        <span>Users</span>
     </a>
 
 </div>
 
-<h2>Recently Added Members</h2>
 
-<table class="dashboard-table">
+<!-- Recent Members -->
+<div class="recent-members">
 
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-        </tr>
-    </thead>
+    <div class="section-header">
+        <h2>Recent Members</h2>
+    </div>
 
-    <tbody>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
 
-    {% for member in recent_members %}
+        <tbody>
 
-        <tr>
-            <td>{{ member.first_name }} {{ member.last_name }}</td>
-            <td>{{ member.email }}</td>
-        </tr>
+        {% for member in recent_members %}
 
-    {% empty %}
+            <tr>
+                <td>
+                    {{ member.first_name }} {{ member.last_name }}
+                </td>
 
-        <tr>
-            <td colspan="2">No members yet.</td>
-        </tr>
+                <td>
+                    {{ member.email }}
+                </td>
+            </tr>
 
-    {% endfor %}
+        {% empty %}
 
-    </tbody>
+            <tr>
+                <td colspan="2">
+                    No members yet.
+                </td>
+            </tr>
 
-</table>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
 
 {% endblock %}
+
