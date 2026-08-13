@@ -23,6 +23,10 @@ urlpatterns = [
     path("members/", include("members.urls")),
     
     path("circulation/", include("circulation.urls")),
+    
+    path("transactions/",
+    include("transactions.urls")
+),
 
 ]
 

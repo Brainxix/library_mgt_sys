@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Borrowing History{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>📖 Borrowing History</h1>
+            <p>View your complete library borrowing history.</p>
+        </div>
+    </div>
+
+
+    <div class="recent-members">
+
+        <div class="section-header">
+            <h2>My Transactions</h2>
+        </div>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Borrowed</th>
+                    <th>Due Date</th>
+                    <th>Returned</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for record in records %}
+
+                <tr>
+
+                    <td>
+                        {{ record.book.title }}
+                    </td>
+
+                    <td>
+                        {{ record.borrow_date }}
+                    </td>
+
+                    <td>
+                        {{ record.due_date }}
+                    </td>
+
+                    <td>
+                        {% if record.return_date %}
+                            {{ record.return_date }}
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {{ record.status }}
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="5">
+                        You have no borrowing history yet.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from datetime import date
-
+from django.conf import settings
 from django.db import models
 
 
@@ -8,6 +8,13 @@ class Member(models.Model):
         ("Active", "Active"),
         ("Inactive", "Inactive"),
     ]
+    user = models.OneToOneField(
+            settings.AUTH_USER_MODEL,
+            on_delete=models.CASCADE,
+            related_name="member_profile",
+            null=True,
+            blank=True,
+    )
 
     first_name = models.CharField(max_length=100, default="")
     last_name = models.CharField(max_length=100, default="")

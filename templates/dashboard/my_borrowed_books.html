@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}My Borrowed Books{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>📚 My Borrowed Books</h1>
+            <p>View the books you currently have borrowed.</p>
+        </div>
+
+        <div class="today">
+            {{ today|date:"l, F j, Y" }}
+        </div>
+    </div>
+
+
+    <div class="recent-members">
+
+        <div class="section-header">
+            <h2>Currently Borrowed</h2>
+        </div>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Borrowed Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for record in records %}
+
+                <tr>
+
+                    <td>
+                        {{ record.book.title }}
+                    </td>
+
+                    <td>
+                        {{ record.book.author }}
+                    </td>
+
+                    <td>
+                        {{ record.borrow_date }}
+                    </td>
+
+                    <td>
+                        {{ record.due_date }}
+                    </td>
+
+                    <td>
+                        {{ record.status }}
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="5">
+                        You currently have no borrowed books.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

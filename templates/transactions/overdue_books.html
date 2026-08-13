@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %} Overdue Books {% end block %}
+{% block content%}
+
+<div class="dashboard">
+    <div class="dashboard-header">
+        <div>
+            <h1>⚠️ Overdue books</h1>
+            <p>Books that have passed their due date.</p>
+        </div>
+    </div>
+
+    <div class="recent-members">
+        <div class=" section-header">
+            <h2>Overdue Borrowing Records </h2>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Member</th>
+                    <th>Books</th>
+                    <th>Due Date</th>
+                    <th>Days Overdue</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for record in records %}
+
+                <tr>
+                    <td>{{record.member}}</td>
+                    <td>{{record.due_date}}</td>
+                    <td>{{ record.days_overdue }} day {{ record.days_overdue|pluralize}}</td>
+                    <td>
+                        <a href="{% url 'receive_book' record.pk %}">
+                            Receive
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+
+                <tr>
+                    <td colspan="5">
+                        No overdue books.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

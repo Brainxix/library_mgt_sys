@@ -4,69 +4,172 @@
 
 {% block content %}
 
-<div class="dashboard-header">
-    <div>
-        <h1>📚 Welcome, {{ request.user.username }}</h1>
-        <p>Manage library operations efficiently.</p>
-    </div>
-</div>
+<div class="dashboard">
 
-<div class="stats-grid">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
 
-    <div class="stat-card books">
-        <i class="fa-solid fa-book"></i>
-        <h2>{{ total_books }}</h2>
-        <p>Total Books</p>
-    </div>
+        <div>
+            <h1>📚 Welcome, {{ request.user.username }}</h1>
+            <p>Manage library operations efficiently.</p>
+        </div>
 
-    <div class="stat-card members">
-        <i class="fa-solid fa-users"></i>
-        <h2>{{ total_members }}</h2>
-        <p>Total Members</p>
+        <div class="today">
+            {{ today|date:"l, F j, Y" }}
+        </div>
+
     </div>
 
-    <div class="stat-card available">
-        <i class="fa-solid fa-circle-check"></i>
-        <h2>{{ available_books }}</h2>
-        <p>Available Books</p>
+
+    <!-- Statistics -->
+    <div class="stats-grid">
+
+        <div class="stat-card books">
+            <i class="fa-solid fa-book"></i>
+            <h2>{{ total_books }}</h2>
+            <p>Total Books</p>
+        </div>
+
+
+        <div class="stat-card members">
+            <i class="fa-solid fa-users"></i>
+            <h2>{{ total_members }}</h2>
+            <p>Total Members</p>
+        </div>
+
+
+        <div class="stat-card available">
+            <i class="fa-solid fa-circle-check"></i>
+            <h2>{{ available_books }}</h2>
+            <p>Available Books</p>
+        </div>
+
+
+        <div class="stat-card borrowed">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <h2>{{ borrowed_books }}</h2>
+            <p>Borrowed Books</p>
+        </div>
+
+
+        <div class="stat-card overdue">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h2>{{ overdue_books }}</h2>
+            <p>Overdue Books</p>
+        </div>
+
     </div>
 
-    <div class="stat-card borrowed">
-        <i class="fa-solid fa-book-bookmark"></i>
-        <h2>{{ borrowed_books }}</h2>
-        <p>Borrowed Books</p>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+
+        <a href="{% url 'book_create' %}" class="action-card">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add Book</span>
+        </a>
+
+
+        <a href="{% url 'book_list' %}" class="action-card">
+            <i class="fa-solid fa-book"></i>
+            <span>Manage Books</span>
+        </a>
+
+
+        <a href="{% url 'issue_book' %}" class="action-card">
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+            <span>Issue Book</span>
+        </a>
+
+
+        <a href="{% url 'borrowed_books' %}" class="action-card">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Receive Book</span>
+        </a>
+
+
+        <a href="{% url 'member_list' %}" class="action-card">
+            <i class="fa-solid fa-users"></i>
+            <span>Members</span>
+        </a>
+
+
+        <a href="{% url 'overdue_books' %}" class="action-card">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Overdue Books</span>
+        </a>
+
     </div>
 
-</div>
 
-<h2>Quick Actions</h2>
+    <!-- Recent Transactions -->
+    <div class="recent-members">
 
-<div class="action-grid">
+        <div class="section-header">
+            <h2>Recent Transactions</h2>
+        </div>
 
-    <a href="{% url 'book_create' %}" class="action-card">
-        <i class="fa-solid fa-plus"></i>
-        <h4>Add Book</h4>
-    </a>
 
-    <a href="{% url 'book_list' %}" class="action-card">
-        <i class="fa-solid fa-book"></i>
-        <h4>Manage Books</h4>
-    </a>
+        <table>
 
-    <a href="#" class="action-card">
-        <i class="fa-solid fa-arrow-right-arrow-left"></i>
-        <h4>Issue Book</h4>
-    </a>
+            <thead>
 
-    <a href="#" class="action-card">
-        <i class="fa-solid fa-rotate-left"></i>
-        <h4>Receive Book</h4>
-    </a>
+                <tr>
+                    <th>Member</th>
+                    <th>Book</th>
+                    <th>Borrowed</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
 
-    <a href="{% url 'member_list' %}" class="action-card">
-        <i class="fa-solid fa-users"></i>
-        <h4>Manage Members</h4>
-    </a>
+            </thead>
+
+
+            <tbody>
+
+                {% for transaction in recent_transactions %}
+
+                <tr>
+
+                    <td>
+                        {{ transaction.member }}
+                    </td>
+
+                    <td>
+                        {{ transaction.book.title }}
+                    </td>
+
+                    <td>
+                        {{ transaction.borrow_date }}
+                    </td>
+
+                    <td>
+                        {{ transaction.due_date }}
+                    </td>
+
+                    <td>
+                        {{ transaction.status }}
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="5">
+                        No transactions yet.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 </div>
 

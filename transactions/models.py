@@ -26,5 +26,5 @@ class BorrowRecord(models.Model):
         default="Borrowed"
     )
 
-    def str(self):
+    def __str__(self):
         return f"{self.member} - {self.book}"

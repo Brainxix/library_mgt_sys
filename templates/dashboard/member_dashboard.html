@@ -4,36 +4,56 @@
 
 {% block content %}
 
-<div class="dashboard-header">
-    <div>
-        <h1>👋 Welcome, {{ request.user.username }}</h1>
-        <p>Explore the library and manage your borrowed books.</p>
-    </div>
-</div>
+<div class="dashboard">
 
-<div class="stats-grid">
+    <!-- Header -->
+    <div class="dashboard-header">
 
-    <div class="stat-card books">
-        <i class="fa-solid fa-book"></i>
-        <h2>{{ available_books }}</h2>
-        <p>Available Books</p>
+        <div>
+            <h1>👋 Welcome, {{ request.user.username }}</h1>
+            <p>Explore the library and manage your borrowed books.</p>
+        </div>
+
     </div>
 
-</div>
 
-<h2>Quick Actions</h2>
+    <!-- Statistics -->
+    <div class="stats-grid">
 
-<div class="action-grid">
+        <div class="stat-card books">
+            <i class="fa-solid fa-book"></i>
+            <h2>{{ available_books }}</h2>
+            <p>Available Books</p>
+        </div>
 
-    <a href="{% url 'book_list' %}" class="action-card">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <h4>Browse Books</h4>
-    </a>
 
-    <a href="#">
-        <i class="fa-solid fa-book-bookmark"></i>
-        <h4>My Borrowed Books</h4>
-    </a>
+        <div class="stat-card borrowed">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <h2>{{ borrowed_books }}</h2>
+            <p>My Borrowed Books</p>
+        </div>
+
+    </div>
+
+
+    <!-- Quick Actions -->
+    <div class="action-grid">
+
+        <a href="{% url 'book_list' %}" class="action-card">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>Browse Books</span>
+        </a>
+        <a href="{% url 'borrowing_history' %}" class="action-card">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Borrowing History</span>
+        </a>
+
+        <a href="{% url 'my_borrowed_books' %}" class="action-card">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <span>My Borrowed Books</span>
+        </a>
+
+    </div>
 
 </div>
 

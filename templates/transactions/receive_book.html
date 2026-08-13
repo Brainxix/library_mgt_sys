@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Receive Book{% endblock %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <div class="form-header">
+        <h1>📥 Receive Book</h1>
+        <p>Confirm that this book has been returned.</p>
+    </div>
+
+    <div class="borrow-details">
+
+        <p>
+            <strong>Member:</strong>
+            {{ borrow_record.member }}
+        </p>
+
+        <p>
+            <strong>Book:</strong>
+            {{ borrow_record.book.title }}
+        </p>
+
+        <p>
+            <strong>Borrowed:</strong>
+            {{ borrow_record.borrow_date }}
+        </p>
+
+        <p>
+            <strong>Due:</strong>
+            {{ borrow_record.due_date }}
+        </p>
+
+    </div>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <p>
+            Are you sure you want to mark this book as returned?
+        </p>
+
+        <div class="form-actions">
+
+            <button type="submit">
+                <i class="fa-solid fa-rotate-left"></i>
+                Confirm Return
+            </button>
+
+            <a href="{% url 'borrowed_books' %}">
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
