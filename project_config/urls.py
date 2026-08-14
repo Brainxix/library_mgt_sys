@@ -25,8 +25,11 @@ urlpatterns = [
     path("circulation/", include("circulation.urls")),
     
     path("transactions/",
-    include("transactions.urls")
-),
+    include("transactions.urls")),
+    
+    path(
+    "notifications/",
+    include("notifications.urls")),
 
 ]
 

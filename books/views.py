@@ -128,3 +128,30 @@ def book_detail(request, pk):
             "book": book
         }
     )
+    
+def digital_library(request):
+    books = Book.objects.filter(
+        digital_file__isnull=False
+    ).exclude(
+        digital_file=""
+    ).order_by("-created_at")
+
+    query = request.GET.get("q")
+
+    if query:
+        books = books.filter(
+            Q(title__icontains=query) |
+            Q(author__icontains=query) |
+            Q(isbn__icontains=query)
+        )
+
+    context = {
+        "books": books,
+        "query": query,
+    }
+
+    return render(
+        request,
+        "books/digital_library.html",
+        context
+    )

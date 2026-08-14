@@ -90,16 +90,15 @@
                         <span>Members</span>
                     </a>
 
-                    <a href="#">
+                    <a href="{% url 'issue_book' %}">
                         <i class="fa-solid fa-book-bookmark"></i>
                         <span>Issue Book</span>
                     </a>
 
-                    <a href="#">
+                    <a href="{% url 'borrowed_books' %}">
                         <i class="fa-solid fa-rotate-left"></i>
                         <span>Receive Book</span>
                     </a>
-
                 <!-- ==========================
                     MEMBER MENU
                 =========================== -->
@@ -120,12 +119,10 @@
                         <i class="fa-solid fa-users"></i>
                         <span>Members</span>
                     </a>
-
-                    <a href="#">
+                    <a href="{% url 'my_borrowed_books' %}">
                         <i class="fa-solid fa-book-bookmark"></i>
                         <span>My Books</span>
                     </a>
-
                     <a href="{% url 'profile' %}">
                         <i class="fa-solid fa-user"></i>
                         <span>Profile</span>
@@ -159,11 +156,18 @@
             <div class="user">
 
                 <!-- Notification -->
-                <button class="notification-btn" type="button" aria-label="Notifications">
+               <a
+                    href="{% url 'notification_list' %}"
+                    class="notification-btn"
+                    aria-label="Notifications">
                     <i class="fa-solid fa-bell"></i>
-                    <span class="notification-dot"></span>
-                </button>
 
+                    {% if unread_notifications_count > 0 %}
+                        <span class="notification-dot">
+                            {{ unread_notifications_count }}
+                        </span>
+                    {% endif %}
+                </a>
                 <!-- User Profile -->
                 <a href="{% url 'profile' %}" class="user-profile">
 

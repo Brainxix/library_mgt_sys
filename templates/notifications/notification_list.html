@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/notifications.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="notifications-page">
+
+    <div class="notifications-header">
+        <div>
+            <span class="section-label">ACCOUNT</span>
+            <h1>Notifications</h1>
+            <p>Stay updated with your library activity.</p>
+        </div>
+
+        <a href="{% url 'mark_all_notifications_read' %}"
+           class="mark-all-btn">
+            <i class="fa-solid fa-check-double"></i>
+            Mark all as read
+        </a>
+    </div>
+
+
+    {% if notifications %}
+
+        <div class="notifications-list">
+
+            {% for notification in notifications %}
+
+                <article class="notification-item
+                    {% if not notification.is_read %}unread{% endif %}">
+
+                    <div class="notification-icon
+                        notification-{{ notification.notification_type|lower }}">
+
+                        {% if notification.notification_type == "SUCCESS" %}
+                            <i class="fa-solid fa-check"></i>
+
+                        {% elif notification.notification_type == "WARNING" %}
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+
+                        {% elif notification.notification_type == "DANGER" %}
+                            <i class="fa-solid fa-circle-exclamation"></i>
+
+                        {% else %}
+                            <i class="fa-solid fa-info"></i>
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="notification-content">
+
+                        <div class="notification-title-row">
+
+                            <h3>
+                                {{ notification.title }}
+                            </h3>
+
+                            {% if not notification.is_read %}
+                                <span class="unread-dot"></span>
+                            {% endif %}
+
+                        </div>
+
+                        <p>
+                            {{ notification.message }}
+                        </p>
+
+                        <small>
+                            {{ notification.created_at|timesince }} ago
+                        </small>
+
+                    </div>
+
+
+                    {% if not notification.is_read %}
+
+                        <a
+                            href="{% url 'mark_notification_read' notification.pk %}"
+                            class="notification-read-btn"
+                            title="Mark as read"
+                        >
+                            <i class="fa-solid fa-check"></i>
+                        </a>
+
+                    {% endif %}
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="notifications-empty">
+
+            <i class="fa-regular fa-bell-slash"></i>
+
+            <h2>No notifications</h2>
+
+            <p>
+                You're all caught up. New library updates will appear here.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

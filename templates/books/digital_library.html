@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="digital-library">
+
+    <div class="digital-library-header">
+        <div>
+            <span class="section-label">DIGITAL COLLECTION</span>
+            <h1>Digital Library</h1>
+            <p>
+                Browse and access books available in digital format.
+            </p>
+        </div>
+
+        <div class="digital-library-count">
+            <strong>{{ books|length }}</strong>
+            <span>Digital Books</span>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <form method="GET" class="digital-search">
+        <input
+            type="search"
+            name="q"
+            value="{{ query|default:'' }}"
+            placeholder="Search digital books..."
+        >
+
+        <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Search
+        </button>
+    </form>
+
+
+    {% if books %}
+
+        <div class="digital-books-grid">
+
+            {% for book in books %}
+
+                <article class="digital-book-card">
+
+                    <div class="digital-book-cover">
+
+                        {% if book.cover_image %}
+                            <img
+                                src="{{ book.cover_image.url }}"
+                                alt="{{ book.title }}"
+                            >
+                        {% else %}
+                            <div class="digital-book-placeholder">
+                                <i class="fa-solid fa-book"></i>
+                            </div>
+                        {% endif %}
+
+                        <span class="digital-badge">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            Digital
+                        </span>
+
+                    </div>
+
+
+                    <div class="digital-book-content">
+
+                        <h3>{{ book.title }}</h3>
+
+                        <p class="digital-book-author">
+                            By {{ book.author }}
+                        </p>
+
+                        {% if book.category %}
+                            <span class="digital-book-category">
+                                {{ book.category.name }}
+                            </span>
+                        {% endif %}
+
+                        {% if book.description %}
+                            <p class="digital-book-description">
+                                {{ book.description|truncatewords:20 }}
+                            </p>
+                        {% endif %}
+
+
+                        <div class="digital-book-actions">
+
+                            <a
+                                href="{{ book.digital_file.url }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-read"
+                            >
+                                <i class="fa-solid fa-book-open"></i>
+                                Read
+                            </a>
+
+                            <a
+                                href="{{ book.digital_file.url }}"
+                                download
+                                class="btn-download"
+                            >
+                                <i class="fa-solid fa-download"></i>
+                                Download
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="digital-empty-state">
+            <i class="fa-solid fa-book-open"></i>
+
+            <h2>No digital books found</h2>
+
+            {% if query %}
+                <p>
+                    No digital books matched "{{ query }}".
+                </p>
+            {% else %}
+                <p>
+                    There are currently no books available in digital format.
+                </p>
+            {% endif %}
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

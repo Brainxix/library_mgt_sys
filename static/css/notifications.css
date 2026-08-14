@@ -1,0 +1,180 @@
+/* =================================
+   NOTIFICATIONS
+================================= */
+
+.notifications-page {
+    width: 100%;
+}
+
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.notifications-header h1 {
+    margin: 0.4rem 0;
+}
+
+.notifications-header p {
+    margin: 0;
+    opacity: 0.7;
+}
+
+.mark-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* Notification list */
+
+.notifications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.notification-item.unread {
+    background: rgba(6, 182, 212, 0.07);
+    border-color: rgba(6, 182, 212, 0.2);
+}
+
+
+/* Icon */
+
+.notification-icon {
+    min-width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.notification-info {
+    background: rgba(6, 182, 212, 0.15);
+}
+
+.notification-success {
+    background: rgba(34, 197, 94, 0.15);
+}
+
+.notification-warning {
+    background: rgba(245, 158, 11, 0.15);
+}
+
+.notification-danger {
+    background: rgba(239, 68, 68, 0.15);
+}
+
+
+/* Content */
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.notification-title-row h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.notification-content p {
+    margin: 0.35rem 0;
+    opacity: 0.75;
+}
+
+.notification-content small {
+    opacity: 0.5;
+}
+
+
+/* Unread indicator */
+
+.unread-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+}
+
+
+/* Mark as read */
+
+.notification-read-btn {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* Empty state */
+
+.notifications-empty {
+    text-align: center;
+    padding: 5rem 1rem;
+}
+
+.notifications-empty i {
+    font-size: 3rem;
+    opacity: 0.35;
+}
+
+.notifications-empty h2 {
+    margin: 1rem 0 0.5rem;
+}
+
+.notifications-empty p {
+    opacity: 0.6;
+}
+
+
+/* Mobile */
+
+@media (max-width: 48rem) {
+
+    .notifications-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .notification-item {
+        align-items: flex-start;
+    }
+
+    .mark-all-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
